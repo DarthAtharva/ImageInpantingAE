@@ -77,6 +77,7 @@ if uploaded_file:
         image = Image.open(uploaded_file)
         if image.mode != 'RGB':
             image = image.convert('RGB')
+            image = image.resize((64, 64))
         processed_image = preprocess_image(image)
         
         # Create three columns for input, masked, and restored images
@@ -89,7 +90,7 @@ if uploaded_file:
                 fill_color="rgba(255, 255, 255, 1)",
                 stroke_width=0,
                 stroke_color="rgba(255, 255, 255, 1)",
-                background_image=image.resize((64, 64)),
+                background_image=image,
                 drawing_mode="point",
                 key="canvas",
                 width=200,
